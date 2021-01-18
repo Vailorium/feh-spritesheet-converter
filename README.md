@@ -18,4 +18,4 @@ main.py
 
 Separated images are exported into the output folder
 
-Run using `py/python main.py`
+Run main.py to convert and transform images
