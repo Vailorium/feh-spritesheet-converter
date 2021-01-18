@@ -33,11 +33,13 @@ def transformImages():
                     top = textureRect[0][1]
                     right = textureRect[0][0] + textureRect[1][0]
                     bottom = textureRect[0][1] + textureRect[1][1]
-
-                    seperated = im.crop((left, top, right, bottom))
-
-                    if value['textureRotated']:
-                        seperated = seperated.rotate(90)
+                    if not value['textureRotated']:
+                        seperated = im.crop((left, top, right, bottom))
+                    else:
+                        right = textureRect[0][0] + textureRect[1][1]
+                        bottom = textureRect[0][1] + textureRect[1][0]
+                        seperated = im.crop((left, top, right, bottom))
+                        seperated = seperated.rotate(90, expand=True)
 
                     seperated.save('./output/'+key, "PNG")
 def main():
