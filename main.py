@@ -42,6 +42,10 @@ def transformImages():
                         seperated = seperated.rotate(90, expand=True)
 
                     seperated.save('./output/'+key, "PNG")
+        elif ".png" in filename:
+            if filename.split('.')[0]+".plist" not in os.listdir('./input'):
+                img = Image.open("./input/"+filename)
+                img.save('./output/'+filename, "PNG")
 def main():
     convertImages()
     transformImages()
