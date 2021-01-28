@@ -44,8 +44,14 @@ def transformImages():
                     seperated.save('./output/'+key, "PNG")
         elif ".png" in filename:
             if filename.split('.')[0]+".plist" not in os.listdir('./input'):
+                oldfilename = filename
+                if ' ' in filename:
+                    filename = filename.replace(' ', '_')
+                    os.rename('./input/'+oldfilename, './input/'+filename)
                 img = Image.open("./input/"+filename)
-                img.save('./output/'+filename, "PNG")
+                img.save('./output/'+oldfilename, "PNG")
+
+                os.rename('./input/'+filename, './input/'+oldfilename)
 def main():
     convertImages()
     transformImages()
